@@ -39,6 +39,7 @@ def create_course(request):
             description = request.POST['description']
             form.save()
             print(course_title, course_type, description) 
+            return render(request, 'submit_course.html')
     return render(request, 'create_course.html',context)
 
 ########################################################################
