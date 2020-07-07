@@ -1,0 +1,53 @@
+{% extends "user/index.html" %}
+{% load crispy_forms_tags %}
+{% block start %}
+
+<h2>Hello {{title_id}} </h2>
+ <div class="content-section col-md-8 col-md-offset-2">
+  <center>
+  <form method="POST" action="/add_topic/{{title_id}}/" >
+    {% csrf_token %}
+    <fieldset class="form-group">
+      {{ form|crispy}}
+    </fieldset>
+   <center>
+    <input type = "submit" value = "Submit"> 
+    <!-- <button style="background: black; font-size: 2rem; padding:1%;" class="btn btn-outline-info" type="submit">&nbsp; Submi --></button>
+  </center>
+  <br/>
+  </form>
+
+<table class="table table-bordered" style="background-color: white">
+    <thead class="bg-primary">
+      <tr>
+        <th>Topic</th>
+        <th>Link</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+    {% for x in add_syllabus %}
+      <tr>
+        <td>{{x.topic}}</td>
+        <td><a href="/link">{{x.link}}</a> </td>
+        <td>
+       <a href='/delete/{{x.id}}/'><button type="button" class="btn btn-info btn-xs">
+          <span class="glyphicon glyphicon-remove"></span> Delete
+        </button></a>
+
+        <a href="/update/{{x.id}}/"><button type="button" class="btn btn-info btn-xs">
+          <span class="glyphicon glyphicon-edit"></span> Edit
+        </button></a>       
+        </td>
+       
+      </tr>
+     {% endfor %}
+    </tbody>
+    
+  </table>
+
+
+</center>
+ </div>
+{% endblock start %}
