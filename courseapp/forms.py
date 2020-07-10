@@ -1,7 +1,7 @@
 from django import forms 
 from django.contrib.auth.models import User 
 from django.contrib.auth.forms import UserCreationForm 
-from .models import CourseCreate
+from .models import CourseCreate, SyllabusAddition
 
 COURSE_TYPE_CHOICE= [
     ('IT/Software', 'IT/software'),
@@ -24,3 +24,9 @@ class UserRegisterForm(UserCreationForm):
     class Meta: 
         model = User 
         fields = ['username', 'email', 'password1', 'password2'] 
+
+class SyllabusAdditionForm(forms.ModelForm):
+
+    class Meta:
+        model = SyllabusAddition
+        fields = ('topic', 'link',)
